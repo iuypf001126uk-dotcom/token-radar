@@ -176,6 +176,7 @@
     if (rows.length === 0) { tbody.innerHTML = '<tr><td colspan="9" class="empty">No protocol matches these filters.</td></tr>'; return; }
     tbody.innerHTML = rows.map(function (r) {
       var chainTxt = r.chains.slice(0, 2).join(', ') + (r.chains.length > 2 ? ' +' + (r.chains.length - 2) : '');
+      if (chainTxt.length > 24) chainTxt = r.chains[0] + ' +' + (r.chains.length - 1);
       return '<tr data-slug="' + esc(r.slug) + '"' + (S.p === r.slug ? ' class="sel"' : '') + '>'
         + '<td class="l rank">#' + r.rank + '</td>'
         + '<td class="l"><span class="name">' + esc(r.name) + '</span>' + (r.on_watchlist ? '<span class="star">watchlist</span>' : '') + '</td>'
